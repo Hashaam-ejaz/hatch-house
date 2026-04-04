@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+@theme {
+  /* Jost set as the default sans font for the whole site */
+  --font-sans: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
+}
