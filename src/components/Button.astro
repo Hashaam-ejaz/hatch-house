@@ -1,16 +1,18 @@
 ---
 interface Props {
   text?: string;
-  variant?: "primary" | "secondary" | "ghost"; 
+  variant?: "primary" | "secondary" | "ghost" | "semiTransparent";
+  class?: string;
 }
 const { text = "Click Here", variant = "primary" } = Astro.props;
 
-const baseStyles = "px-[16px] md:px-4 py-2 md:py-2.5 transition-all duration-200 font-medium text-base md:text-xl rounded-full";
+const baseStyles = "px-[16px] md:px-4 py-2 md:py-2.5 transition-all duration-200 md:text-base text-xl rounded-full";
 
 const variants = {
-  primary: "text-white bg-primary",
-  secondary: "text-black bg-white",
-  ghost: "text-white bg-transparent"
+  primary: "text-white bg-primary font-medium",
+  secondary: "text-black bg-white font-medium",
+  ghost: "text-white bg-transparent font-medium",
+  semiTransparent: "text-primary bg-primary/10 font-bold"
 };
 ---
 
