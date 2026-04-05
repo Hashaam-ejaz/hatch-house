@@ -1,0 +1,18 @@
+---
+import Button from "./Button.astro"
+---
+
+<header class="flex justify-between items-center px-4 lg:px-[150px] py-4">
+  <div class="flex gap-2.5">
+    <img src="/favicon.svg"/> 
+    <img src="/hatchText.svg"/>
+  </div>
+  <div class="flex md:hidden">
+    <img src="hamburger.svg"/>
+  </div>
+  <div class="hidden md:flex gap-[70px]">
+    <Button text="Amenities" variant="ghost" />
+    <Button text="Pricing" variant="ghost" />
+    <Button text="Contact Now" variant="primary" />
+  </div>
+</header>
