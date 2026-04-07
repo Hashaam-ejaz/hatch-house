@@ -6,3 +6,9 @@
   --color-primary: #30C5FF;
   --color-secondary: #141414;
 }
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}

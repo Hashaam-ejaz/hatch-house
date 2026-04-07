@@ -3,19 +3,24 @@ interface Props {
   text?: string;
   variant?: "primary" | "secondary" | "ghost" | "semiTransparent";
   class?: string;
+  href?: string;
 }
-const { text = "Click Here", variant = "primary" } = Astro.props;
+const { text = "Click Here", variant = "primary", href, class: className} = Astro.props;
+
+const Element = href ? 'a' : 'button';
 
 const baseStyles = "px-[16px] md:px-4 py-2 md:py-2.5 transition-all duration-200 md:text-base text-xl rounded-full";
 
 const variants = {
   primary: "text-white bg-primary font-medium",
-  secondary: "text-black bg-white font-medium",
+  secondary: "text-secondary bg-white font-medium",
   ghost: "text-white bg-transparent font-medium",
   semiTransparent: "text-primary bg-primary/10 font-bold"
 };
+
+
 ---
 
-<button class:list={[baseStyles, variants[variant]]}>
+<Element href={href} class:list={[baseStyles, variants[variant], href ? "cursor-pointer" : "", className]}>
   {text}
-</button>
+</Element>
