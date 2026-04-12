@@ -1,0 +1,49 @@
+---
+interface Props {
+  imageSrc: string;
+  title: string;
+  index?: number;
+}
+
+const { imageSrc, title, index = 0 } = Astro.props;
+
+const isEven = index % 2 === 0;
+const iconBg = isEven ? "bg-[#30C5FF]" : "bg-secondary";
+---
+
+<div
+  class="flex flex-col items-center
+    bg-white rounded-2xl border border-t border-[#E3E3E3]
+    px-[10px] pt-3 pb-3 gap-5
+    md:px-[25px] md:pt-[25px] md:pb-[25px]
+    w-full
+    shadow-sm"
+>
+  <div
+    class={`
+      flex items-center justify-center
+      rounded-xl shrink-0
+      w-10 h-10
+      md:w-[60px] md:h-[60px]
+      ${iconBg}
+    `}
+  >
+    <img
+      src={imageSrc}
+      alt={title}
+      class="w-7 h-7 md:w-10 md:h-10 object-contain"
+      style={index === 5 ? "" : isEven ? "" : "filter: invert(1)"}
+    />
+  </div>
+
+  <!-- Title -->
+  <p
+    class="text-[16px] md:text-[17px]
+      font-normal text-[#111111]
+      text-center leading-snug
+      w-full"
+    style="font-family: 'Georgia', serif;"
+  >
+    {title}
+  </p>
+</div>

@@ -1,0 +1,56 @@
+---
+const reasons = [
+  {
+    logo: "/star.svg",
+    heading: "Design Driven",
+    text: "Every corner is thoughtfully designed to inspire creativity, and elevate your daily work experience.",
+  },
+  {
+    logo: "/heart.svg",
+    heading: "Community Focused",
+    text: "We cultivate meaningful connections through curated events, and shared experiences.",
+  },
+  {
+    logo: "/badge.svg",
+    heading: "Premium Amenities",
+    text: "High-speed internet, power back-up, ergonomic furniture, and top-tier facilities come as standard.",
+  },
+  {
+    logo: "/lightning.svg",
+    heading: "Flexibility",
+    text: "Adapt your workspace to your needs with scalable solutions, and no long-term commitments.",
+  },
+  {
+    logo: "/location.svg",
+    heading: "Prime Location",
+    text: "Strategically positioned in the heart of DHA with excellent transport links to all over the city.",
+  },
+];
+---
+
+<div class="flex flex-col py-[50px] md:py-[100px]">
+  <div class="text-start text-[32px] font-bold mb-2.5 md:text-center md:text-[48px]">
+    Why Choose Hatch
+  </div>
+  <div class="text-base font-normal mb-[30px] md:text-center md:text-[20px]">
+    We are more than just a workspace. We are a community dedicated to helping
+    you thrive.
+  </div>
+  <div class="flex flex-col md:flex-row gap-5">
+    {
+      reasons.map((reason) => (
+        <div class="flex flex-col gap-2.5">
+          <div class="w-10 h-10 flex items-center justify-start">
+            <img
+              src={reason.logo}
+              alt={reason.heading}
+              class="w-full h-full object-contain"
+            />
+          </div>
+          <div class="font-semibold text-xl">{reason.heading}</div>
+          <div class="text-base">{reason.text}</div>
+        </div>
+      ))
+    }
+  </div>
+</div>
