@@ -1,0 +1,39 @@
+---
+const items = [
+  "Reserved Desk Space",
+  "Valet Parking",
+  "High-speed WiFi",
+  "Mail Handing Service",
+  "Conference Room Access",
+];
+---
+
+<div class="flex flex-col flex-1 pb-[50px] md:py-[100px] ">
+  <div class="text-center font-bold text-[32px] md:text-5xl">
+    Simple, Transparent Pricing
+  </div>
+  <div class="mt-2.5 mb-[30px] text-base md:text-xl md:mb-[80px] text-center">
+    No hidden charges & tax inclusive.
+  </div>
+  <div class="bg-white border-primary border-2 p-6 md:p-9 rounded-3xl text-secondary">
+    <div class="text-2xl mb-5 md:mb-[35px]">Dedicated Desk</div>
+    <div class="flex items-end mb-[30px] md:mb-[45px]">
+      <div class="font-bold text-[40px] leading-none">PKR40,000</div>
+      <span class="text-[#717182] text-base md:text-2xl">/month</span>
+    </div>
+    <div class="text-[#717182] text-base flex flex-col gap-[13px]">
+      {
+        items.map((item) => {
+          return (
+            <div class="flex gap-2.5 items-center">
+              <div class="flex w-5 h-5 items-center justify-center">
+                <img src="/tick.svg" />
+              </div>
+              {item}
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</div>
