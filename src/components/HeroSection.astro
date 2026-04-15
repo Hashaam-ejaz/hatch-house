@@ -4,34 +4,38 @@ import HeroGrid from "./HeroGrid.astro";
 ---
 
 <div
-  class="flex flex-1 flex-col md:flex-row gap-[50px] py-5 md:pb-[150px] md:pt-[100px]"
+  class="flex flex-1 flex-col lg:flex-row gap-[50px] py-5 lg:pb-[150px] lg:pt-[100px] items-center overflow-hidden"
 >
-  <div>
+  <div class="flex-1 min-w-0">
     <div class="w-fit mb-6">
       <Button text="EST. 2025" variant="semiTransparent" />
     </div>
+    
     <div class="text-[64px] leading-[84px] font-bold mb-10 md:text-8xl">
-      <span>Work.</span>
-      <br />
-      <span>Create.</span>
-      <br />
-      <span class="text-primary">Belong.</span>
-      <br />
+      <span>Work.</span><br />
+      <span>Create.</span><br />
+      <span class="text-primary">Belong.</span><br />
     </div>
-    <span class="font-semibold text-2xl md:text-[32px] mb-2.5"
-      >Your Space. Your Way.</span
-    >
+
+    <span class="font-semibold text-2xl md:text-[32px] mb-2.5">Your Space. Your Way.</span>
     <br />
-    <p class="flex flex-col text-[16px] md:text-2xl">
-      <span>A flexible co-working hub designed for creators, founders, and freelancers;</span>
-      <span>who want to work on their own time, and in their own space.</span>
+
+    <p class="text-[16px] md:text-2xl mt-4">
+      <span class="block xl:whitespace-nowrap">
+        A flexible co-working hub designed for creators, founders, and freelancers;
+      </span>
+      <span class="block">
+        who want to work on their own time, and in their own space.
+      </span>
     </p>
-    <div class="flex gap-2.5 mt-5 md:mt-[130px]">
+
+    <div class="flex gap-2.5 mt-5 lg:mt-[130px]">
       <Button text="Contact Now" variant="primary" href="/contact" />
       <Button text="Visit Us" variant="secondary" href="/visit" />
     </div>
   </div>
-  <div>
+
+  <div class="flex-1 w-full max-w-[500px] min-w-0">
     <HeroGrid />
   </div>
 </div>
