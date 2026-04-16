@@ -1,0 +1,55 @@
+---
+
+const items = [
+  {
+    icon: "/email-footer.svg",
+    text: "info@hatchhouse.net",
+  },
+  {
+    icon: "/call-footer.svg",
+    text: "+92 329 4282424",
+  },
+  {
+    icon: "/location-footer.svg",
+    text: "2nd Floor, Building 121, Sector Y, Commercial Area, Phase 3, DHA, Lahore",
+  },
+]
+---
+
+<footer>
+  <div class="flex flex-col mb-[37px]">
+    <div class="flex items-center justify-center shrink-0 w-[132px] h-[60px] md:w-[500px] md:h-[183px] mb-[60px] md:mb-[150px] mt-3.5 md:mt-[136px] md:mx-auto">
+      <img src="/footer-logo.webp" alt="Hatch" />
+    </div>
+    <div class="flex flex-col md:flex-row md:flex-wrap md:justify-center gap-5 md:gap-x-[100px] text-[25px] md:w-[600px] md:mx-auto">
+      {
+        items.map((item, index) => {
+          return (
+            <div 
+              class={`
+                flex gap-2.5 
+                ${index === 2 
+                  ? "w-full items-start md:justify-center md:mt-[50px]" 
+                  : "items-center justify-start"
+                }
+              `}
+            >
+              {/* Using mt-1.5 to visually align the icon with the top of the first line of text */}
+              <img 
+                src={item.icon} 
+                alt={item.text} 
+                class={`shrink-0 ${index === 2 ? "mt-1.5" : ""}`} 
+              />
+              
+              <div class={`
+                ${index === 2 ? "wrap-break-word" : "whitespace-nowrap"} text-center
+              `}>
+                {item.text}
+              </div>
+            </div>
+          )
+        })
+      }
+    </div>
+  </div>
+</footer>

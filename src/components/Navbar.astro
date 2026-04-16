@@ -8,11 +8,12 @@ import Button from "./Button.astro"
     <img src="/hatchText.svg"/>
   </div>
   <div class="flex md:hidden">
-    <img src="hamburger.svg"/>
+    <Button text="Contact Now" variant="primary" href="#contact" />
   </div>
-  <div class="hidden md:flex gap-[70px]">
-    <Button text="Amenities" variant="ghost" />
-    <Button text="Pricing" variant="ghost" />
-    <Button text="Contact Now" variant="primary" />
+
+  <div class="hidden md:flex items-center gap-[70px]">
+    <Button text="Amenities" variant="ghost" href="#amenities"/>
+    <Button text="Pricing" variant="ghost" href="#pricing" />
+    <Button text="Contact Now" variant="primary" href="#contact"/>
   </div>
 </header>
