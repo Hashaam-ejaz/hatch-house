@@ -4,8 +4,9 @@ interface Props {
   variant?: "primary" | "secondary" | "ghost" | "semiTransparent";
   class?: string;
   href?: string;
+  target?: "_self" | "_blank";
 }
-const { text = "Click Here", variant = "primary", href, class: className} = Astro.props;
+const { text = "Click Here", variant = "primary", href, class: className, target = "_self"} = Astro.props;
 
 const Element = href ? 'a' : 'button';
 
@@ -21,6 +22,6 @@ const variants = {
 
 ---
 
-<Element href={href} class:list={[baseStyles, variants[variant], href ? "cursor-pointer" : "", className]}>
+<Element href={href} class:list={[baseStyles, variants[variant], href ? "cursor-pointer" : "", className]} target={target}>
   {text}
 </Element>

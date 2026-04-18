@@ -4,14 +4,18 @@ const items = [
   {
     icon: "/email-footer.svg",
     text: "info@hatchhouse.net",
+    link: "mailto:info@hatchhouse.net",
+
   },
   {
     icon: "/call-footer.svg",
     text: "+92 329 4282424",
+    link: "https://wa.me/923294282424?text=I%20would%20like%20to%20know%20more%20about%20Hatch"
   },
   {
     icon: "/location-footer.svg",
     text: "2nd Floor, Building 121, Sector Y, Commercial Area, Phase 3, DHA, Lahore",
+    link: "https://maps.app.goo.gl/pjZD9m1F27L5CafW6?g_st=ic"
   },
 ]
 ---
@@ -25,16 +29,17 @@ const items = [
       {
         items.map((item, index) => {
           return (
-            <div 
+            <a 
+              href={item.link}
+              target={index === 0 ? "_self" : "_blank"}
               class={`
-                flex gap-2.5 
+                flex gap-2.5 transition-opacity hover:opacity-80
                 ${index === 2 
                   ? "w-full items-start md:justify-center md:mt-[50px]" 
                   : "items-center justify-start"
                 }
               `}
             >
-              {/* Using mt-1.5 to visually align the icon with the top of the first line of text */}
               <img 
                 src={item.icon} 
                 alt={item.text} 
@@ -42,12 +47,13 @@ const items = [
               />
               
               <div class={`
-                ${index === 2 ? "wrap-break-word" : "whitespace-nowrap"} text-center
+                ${index === 2 ? "break-words" : "whitespace-nowrap"} 
+                ${index === 2 ? "text-left" : ""}
               `}>
                 {item.text}
               </div>
-            </div>
-          )
+            </a>
+          );
         })
       }
     </div>
