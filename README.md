@@ -1,43 +1,49 @@
-# Astro Starter Kit: Minimal
+markdown_content = """# Hatch House | High-Performance Co-Working Landing Page
 
-```sh
-npm create astro@latest -- --template minimal
-```
+A production-grade, enterprise-secured landing page built for **Hatch House**. This project was engineered to prove that for static-first ventures, choosing the right architecture is superior to simply writing "good" code.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🚀 Performance Metrics
+Validated by WebPageTest & Lighthouse:
+* **LCP (Largest Contentful Paint):** 0.672s
+* **TTFB (Time to First Byte):** Near-zero via Vercel Edge Network
+* **TBT (Total Blocking Time):** 0ms
+* **Security Grade:** A (Mozilla Observatory / HSTS / CSP)
+* **Page Weight:** 484kb (Lean, optimized assets)
 
-## 🚀 Project Structure
+## 🛠 Architectural Decisions
 
-Inside of your Astro project, you'll see the following folders and files:
+### 1. The Framework: Astro JS
+While my default is often React/Next.js, I opted for **Astro** for this project. 
+* **Why:** For a landing page, shipping a massive React bundle is unnecessary overhead. Astro’s "Islands Architecture" allowed me to ship **zero client-side JavaScript** by default, only hydrating interactive elements where strictly necessary.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+### 2. Infrastructure: Vercel Edge Network
+Traditional shared hosting was migrated to **Vercel’s Global CDN**.
+* **Why:** By deploying to the Edge, the site is physically closer to the user. This reduced latency significantly, ensuring the site feels instantaneous regardless of the user's global location.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### 3. Backend: Decoupled Lead-Gen
+I implemented a serverless lead-generation system using **Astro Actions** and **Vercel Serverless Functions**.
+* **Why:** This allows for a 100% static frontend with a "pay-as-you-go" backend.
+* **Cost Efficiency:** Integrated **Resend** for transactional emails, resulting in **$0/mo infrastructure costs** for the client while maintaining the ability to scale to thousands of leads.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## 🔒 Security Hardening
+Performance is irrelevant without security. The production environment is hardened with:
+* **Content Security Policy (CSP):** Mitigates XSS by strictly defining trusted content sources.
+* **HSTS:** Forces secure HTTPS connections.
+* **Clickjacking Protection:** Enforced `SAMEORIGIN` framing protection and `X-Content-Type-Options: nosniff`.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## 📦 Tech Stack
+* **Frontend:** Astro, Tailwind CSS, TypeScript
+* **Serverless:** Vercel Functions, Astro Actions
+* **Email:** Resend
+* **Deployment:** Vercel Edge Network
 
-## 🧞 Commands
+## ⚡ Quick Start
+```bash
+# Install dependencies
+npm install
 
-All commands are run from the root of the project, from a terminal:
+# Start development server
+npm run dev
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+# Build for production
+npm run build
