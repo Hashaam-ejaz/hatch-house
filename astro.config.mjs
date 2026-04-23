@@ -9,7 +9,8 @@ import vercel from '@astrojs/vercel';
 
 export default defineConfig({
   output: 'server',
-  
+  adapter: vercel(),
+
   vite: {
     plugins: [tailwindcss()]
   },
@@ -21,5 +22,4 @@ export default defineConfig({
       provider: fontProviders.google(),
     },
   ],
-  adapter: vercel(),
 });
