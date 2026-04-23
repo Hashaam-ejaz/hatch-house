@@ -19,6 +19,6 @@ export default defineConfig({
       provider: fontProviders.google(),
     },
   ],
-
-  adapter: vercel()
+  adapter: vercel(),
+  output: 'server'
 });
