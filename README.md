@@ -1,4 +1,4 @@
-markdown_content = """# Hatch House | High-Performance Co-Working Landing Page
+# Hatch House | High-Performance Co-Working Landing Page
 
 A production-grade, enterprise-secured landing page built for **Hatch House**. This project was engineered to prove that for static-first ventures, choosing the right architecture is superior to simply writing "good" code.
 
