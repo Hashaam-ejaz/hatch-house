@@ -5,8 +5,9 @@ interface Props {
   class?: string;
   href?: string;
   target?: "_self" | "_blank";
+  type?: "button" | "submit" | "reset";
 }
-const { text = "Click Here", variant = "primary", href, class: className, target = "_self"} = Astro.props;
+const { text = "Click Here", variant = "primary", href, class: className, target = "_self", type = "button"} = Astro.props;
 
 const Element = href ? 'a' : 'button';
 
