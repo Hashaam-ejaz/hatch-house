@@ -9,7 +9,7 @@ export const server = {
     accept: 'form',
     input: z.object({
       fullName: z.string(),
-      email: z.string().email(),
+      email: z.email(),
       phone: z.string(),
     }),
     handler: async (input) => {
