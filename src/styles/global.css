@@ -20,3 +20,7 @@ html {
 #pricing, #contact {
   scroll-margin-top: 30px;
 }
+
+#office, #meeting, #recreation, #reception, #exterior {
+  scroll-margin-top: 50px;
+}

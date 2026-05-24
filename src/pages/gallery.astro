@@ -1,0 +1,487 @@
+---
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+import HomeLayout from "../layouts/HomeLayout.astro";
+
+const galleryData = [
+  {
+    id: "office",
+    title: "Office Area",
+    thumb: "/gallery/office1.png",
+    images: [
+      { src: "/gallery/office1.png", alt: "Office Main Desk Area Layout" },
+      { src: "/gallery/office2.jpg", alt: "Office Workstation Seating View" },
+      { src: "/gallery/office3.jpg", alt: "Office Shared Desk Configurations" },
+      { src: "/gallery/office4.jpg", alt: "Office Setup with Wall Mural View" },
+      { src: "/gallery/office5.jpg", alt: "Wall Mural View" },
+      { src: "/gallery/office6.jpg", alt: "Alternative Angle Office Desks" },
+    ],
+  },
+  {
+    id: "meeting",
+    title: "Meeting Room",
+    thumb: "/gallery/meeting1.jpg",
+    images: [
+      { src: "/gallery/meeting1.jpg", alt: "Main Conference Room Table Setup" },
+      { src: "/gallery/meeting2.jpg", alt: "Meeting Room With Wall Mural" },
+      {
+        src: "/gallery/meeting3.jpg",
+        alt: "Close up Screen Layout Meeting Room",
+      },
+    ],
+  },
+  {
+    id: "recreation",
+    title: "Recreational Room",
+    thumb: "/gallery/recreation1.jpg",
+    images: [
+      {
+        src: "/gallery/recreation1.jpg",
+        alt: "Comfy Leather Bean Bags & Loungers",
+      },
+      {
+        src: "/gallery/recreation2.jpg",
+        alt: "Recreational Breakout Zone Seating",
+      },
+      {
+        src: "/gallery/recreation3.jpg",
+        alt: "In-house Espresso Coffee Machine Station",
+      },
+    ],
+  },
+  {
+    id: "reception",
+    title: "Reception",
+    thumb: "/gallery/reception1.png",
+    images: [
+      {
+        src: "/gallery/reception1.png",
+        alt: "Front Welcome Reception Desk Area",
+      },
+      {
+        src: "/gallery/reception2.jpg",
+        alt: "Hatch Branded Entryway Counters",
+      },
+    ],
+  },
+  {
+    id: "exterior",
+    title: "Exterior",
+    thumb: "/gallery/exterior1.jpg",
+    images: [
+      {
+        src: "/gallery/exterior1.jpg",
+        alt: "Hatch Main Signage Building Facade",
+      },
+    ],
+  },
+];
+
+const allFlattenedImages = galleryData.flatMap((section) => section.images);
+---
+
+<HomeLayout title="Photo Gallery | Hatch">
+  <Navbar />
+
+  <main
+    class="w-full max-w-7xl mx-auto flex flex-col md:flex-row flex-1 pb-8 gap-8 md:gap-12 relative items-start font-sans"
+  >
+    <aside
+      class="w-full md:w-[240px] lg:w-[280px] sticky top-0 md:top-6 z-40 bg-secondary left-0 px-6 md:px-0 pt-4 pb-4 md:py-4 border-b md:border-b-0 border-neutral-900 shrink-0"
+    >
+      <a
+        href="/"
+        class="text-xs text-neutral-500 hover:text-white transition-colors duration-200 gap-1.5 items-center mb-6 hidden md:inline-flex group"
+      >
+        <span
+          class="transform group-hover:-translate-x-1 transition-transform duration-200"
+          >&larr;</span
+        > Back to Home
+      </a>
+
+      <h1
+        class="text-xs font-semibold tracking-[0.2em] text-neutral-500 uppercase mb-6 hidden md:block"
+      >
+        Photo Gallery
+      </h1>
+
+      <nav
+        id="sidebar-nav"
+        class="flex md:flex-col overflow-x-auto md:overflow-x-visible gap-2 pb-2 md:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden snap-x"
+      >
+        {
+          galleryData.map((section, index) => (
+            <a
+              href={`#${section.id}`}
+              data-nav-id={section.id}
+              class:list={[
+                "flex items-center gap-3 shrink-0 snap-start p-2 md:py-2.5 md:px-3 rounded-lg transition-all duration-200 group border w-auto md:w-full",
+                // Default active state for the first item (Office Area) on page load
+                index === 0
+                  ? "bg-neutral-900/90 border-neutral-800 text-white is-active"
+                  : "bg-neutral-950/40 md:bg-transparent border-neutral-900 md:border-transparent text-neutral-400",
+              ]}
+            >
+              <img
+                src={section.thumb}
+                class:list={[
+                  "w-10 h-10 rounded object-cover bg-neutral-900 border border-neutral-800 hidden sm:block transition-all duration-300",
+                  // First item starts colored (no grayscale), others start grayscale
+                  index === 0
+                    ? "grayscale-0"
+                    : "grayscale group-hover:grayscale-0",
+                ]}
+                alt=""
+              />
+              <div class="text-left">
+                <span class="text-xs font-medium transition-colors duration-200 block tracking-wide group-hover:text-white">
+                  {section.title}
+                </span>
+              </div>
+            </a>
+          ))
+        }
+      </nav>
+    </aside>
+
+    <div
+      class="flex-1 w-full space-y-16 md:space-y-24 border-l border-neutral-900/50 md:pl-10"
+    >
+      {
+        galleryData.map((section, index) => (
+          <section
+            id={section.id}
+            class:list={[
+              "scroll-mt-24 md:scroll-mt-10 group/section",
+              // THE FIX: Force the very last section to take up enough height to allow scrolling
+              // index === galleryData.length - 1 ? "min-h-[85vh] pb-32" : ""
+            ]}
+          >
+            <div class="mb-6 px-1">
+              <h2 class="text-sm font-semibold text-neutral-400 tracking-[0.15em] uppercase">
+                {section.title}
+              </h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {section.images.map((img, index) => {
+                const flatIndex = allFlattenedImages.findIndex(
+                  (f) => f.src === img.src,
+                );
+
+                return (
+                  <div
+                    class:list={[
+                      "relative overflow-hidden rounded-lg bg-neutral-950 border border-neutral-900 group/img cursor-pointer",
+                      index === 0
+                        ? "sm:col-span-2 aspect-[16/9]"
+                        : "sm:col-span-1 aspect-[4/3]",
+                    ]}
+                  >
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      data-flat-index={flatIndex}
+                      class="gallery-clickable-img w-full h-full object-cover transition-all duration-500 ease-out grayscale-[15%] group-hover/img:grayscale-0 group-hover/img:scale-[1.015]"
+                      loading="lazy"
+                    />
+                    <div class="absolute inset-0 border border-white/0 group-hover/img:border-white/10 transition-all duration-300 pointer-events-none rounded-lg" />
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        ))
+      }
+
+      <div
+        class="py-4 border-t border-neutral-900/50 flex flex-col items-center justify-center gap-4"
+      >
+        <p class="text-neutral-500 text-sm tracking-wide">All caught up?</p>
+        <a
+          href="/"
+          class="text-neutral-300 hover:text-white bg-neutral-900/50 hover:bg-neutral-800 px-6 py-3 rounded-full transition-all duration-300 text-sm font-medium border border-neutral-800 flex items-center gap-2 group"
+        >
+          <span
+            class="transform group-hover:-translate-x-1 transition-transform duration-300"
+            >&larr;</span
+          >
+          Return to Home Page
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <div
+    id="lightbox-modal"
+    class="fixed inset-0 bg-black/98 z-50 hidden flex-col items-center justify-center p-4 md:p-12 select-none backdrop-blur-sm transition-all duration-300"
+  >
+    <button
+      id="close-modal"
+      class="absolute top-6 right-6 text-neutral-500 hover:text-white text-3xl font-light p-2 transition-colors duration-200"
+      aria-label="Close">&times;</button
+    >
+    <button
+      id="prev-modal"
+      class="absolute left-4 md:left-8 text-neutral-500 hover:text-white text-4xl font-light p-4 transition-colors duration-200"
+      aria-label="Previous image">&lsaquo;</button
+    >
+
+    <div
+      class="max-w-5xl max-h-[85vh] flex flex-col justify-center items-center gap-4"
+    >
+      <img
+        id="modal-target-img"
+        src=""
+        alt=""
+        class="max-w-full max-h-[75vh] object-contain rounded-md shadow-2xl border border-neutral-900"
+      />
+      <p
+        id="modal-caption"
+        class="text-xs font-medium text-neutral-500 tracking-wider text-center max-w-xl px-4 mt-2"
+      >
+      </p>
+    </div>
+
+    <button
+      id="next-modal"
+      class="absolute right-4 md:right-8 text-neutral-500 hover:text-white text-4xl font-light p-4 transition-colors duration-200"
+      aria-label="Next image">&rsaquo;</button
+    >
+  </div>
+
+  <Footer reducePadding/>
+
+  <script>
+    const modal = document.getElementById("lightbox-modal");
+    const modalImg = document.getElementById(
+      "modal-target-img",
+    ) as HTMLImageElement;
+    const modalCaption = document.getElementById("modal-caption");
+    const closeBtn = document.getElementById("close-modal");
+    const prevBtn = document.getElementById("prev-modal");
+    const nextBtn = document.getElementById("next-modal");
+
+    const images = Array.from(
+      document.querySelectorAll(".gallery-clickable-img"),
+    ) as HTMLImageElement[];
+    let currentGlobalIndex = 0;
+
+    function syncLightboxState(index: number) {
+      if (index < 0 || index >= images.length) return;
+      currentGlobalIndex = index;
+
+      const targetDataSrc = images[currentGlobalIndex];
+      modalImg.src = targetDataSrc.src;
+      modalImg.alt = targetDataSrc.alt;
+      if (modalCaption) {
+        modalCaption.textContent =
+          targetDataSrc.alt || "Hatch House Space Gallery View";
+      }
+    }
+
+    function openLightbox(index: number) {
+      syncLightboxState(index);
+      modal?.classList.remove("hidden");
+      modal?.classList.add("flex");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox() {
+      modal?.classList.add("hidden");
+      modal?.classList.remove("flex");
+      document.body.style.overflow = "";
+    }
+
+    document.body.addEventListener("click", (e) => {
+      const target = e.target as HTMLImageElement;
+      if (target && target.classList.contains("gallery-clickable-img")) {
+        const indexStr = target.getAttribute("data-flat-index");
+        if (indexStr !== null) {
+          openLightbox(parseInt(indexStr, 10));
+        }
+      }
+    });
+
+    closeBtn?.addEventListener("click", closeLightbox);
+    nextBtn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      syncLightboxState((currentGlobalIndex + 1) % images.length);
+    });
+    prevBtn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      syncLightboxState(
+        (currentGlobalIndex - 1 + images.length) % images.length,
+      );
+    });
+
+    modal?.addEventListener("click", (e) => {
+      if (e.target === modal) closeLightbox();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (modal?.classList.contains("hidden")) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowRight")
+        syncLightboxState((currentGlobalIndex + 1) % images.length);
+      if (e.key === "ArrowLeft")
+        syncLightboxState(
+          (currentGlobalIndex - 1 + images.length) % images.length,
+        );
+    });
+
+    // --- KEEP YOUR EXISTING LIGHTBOX LOGIC HERE ---
+
+    const navContainer = document.getElementById("sidebar-nav");
+    const navLinks = document.querySelectorAll("#sidebar-nav [data-nav-id]");
+    const gallerySections = document.querySelectorAll("main section[id]");
+
+    let isProgrammaticScrolling = false;
+    let scrollStopTimer: number;
+
+    // Helper to update visual styles
+    function updateNavStyles(activeId: string | null) {
+      if (!activeId) return;
+
+      navLinks.forEach((link) => {
+        const linkId = link.getAttribute("data-nav-id");
+        const img = link.querySelector("img");
+        const isMobile = window.innerWidth < 768;
+
+        if (linkId === activeId) {
+          link.classList.add(
+            "bg-neutral-900/90",
+            "border-neutral-800",
+            "text-white",
+            "is-active",
+          );
+          link.classList.remove(
+            "bg-neutral-950/40",
+            "md:bg-transparent",
+            "border-neutral-900",
+            "md:border-transparent",
+            "text-neutral-400",
+          );
+
+          if (img) {
+            img.classList.remove("grayscale");
+            img.classList.add("grayscale-0");
+          }
+
+          if (isMobile && navContainer && !isProgrammaticScrolling) {
+            link.scrollIntoView({
+              behavior: "smooth",
+              block: "nearest",
+              inline: "center",
+            });
+          }
+        } else {
+          link.classList.remove(
+            "is-active",
+            "bg-neutral-900/90",
+            "border-neutral-800",
+            "text-white",
+          );
+          link.classList.add(
+            "bg-neutral-950/40",
+            "md:bg-transparent",
+            "border-neutral-900",
+            "md:border-transparent",
+            "text-neutral-400",
+          );
+
+          if (img) {
+            img.classList.remove("grayscale-0"); // <-- THIS STRIPS THE DEFAULT ACTIVE STATE
+            img.classList.add("grayscale", "group-hover:grayscale-0");
+          }
+        }
+      });
+    }
+
+    // 1. Intelligent Active Section Detection based on Math & Geometry
+    function detectActiveSection() {
+      if (isProgrammaticScrolling) return;
+
+      let activeId = null;
+      // This is the invisible "tripwire" line near the top of the screen below your header
+      const triggerLine = window.innerWidth < 768 ? 140 : 120;
+
+      // Check which section is currently crossing the top tripwire
+      for (const section of gallerySections) {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= triggerLine && rect.bottom > triggerLine) {
+          activeId = section.getAttribute("id");
+          break;
+        }
+      }
+
+      // 2. The Bottom-of-Page Fix: If the page can't scroll any further,
+      // find the section that takes up the MOST visible space on the screen.
+      const isAtBottom =
+        Math.ceil(window.innerHeight + window.scrollY) >=
+        document.documentElement.scrollHeight - 10;
+
+      if (isAtBottom) {
+        let maxVisibleHeight = 0;
+
+        gallerySections.forEach((section) => {
+          const rect = section.getBoundingClientRect();
+          // Calculate how many vertical pixels of this section are actually visible on screen
+          const visibleHeight =
+            Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+
+          if (visibleHeight > maxVisibleHeight) {
+            maxVisibleHeight = visibleHeight;
+            activeId = section.getAttribute("id");
+          }
+        });
+      }
+
+      if (activeId) {
+        updateNavStyles(activeId);
+      }
+    }
+
+    // 3. High-Performance Scroll Listener with Auto-Unlock
+    window.addEventListener(
+      "scroll",
+      () => {
+        // If the user clicked a link, wait until the smooth scrolling completely physically stops
+        if (isProgrammaticScrolling) {
+          clearTimeout(scrollStopTimer);
+          scrollStopTimer = setTimeout(() => {
+            isProgrammaticScrolling = false;
+          }, 150); // 150ms after the LAST scroll event fires, we assume the jump animation stopped
+          return;
+        }
+
+        detectActiveSection();
+      },
+      { passive: true },
+    );
+
+    // Initial check on page load
+    setTimeout(detectActiveSection, 100);
+
+    // 4. Clean Click Interceptor
+    navLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const targetId = link.getAttribute("data-nav-id");
+        if (!targetId) return;
+
+        // Lock the scroll spy so it doesn't fight the browser's smooth scroll jump
+        isProgrammaticScrolling = true;
+        updateNavStyles(targetId);
+
+        // Smoothly center the tapped button in the mobile nav strip
+        if (window.innerWidth < 768 && navContainer) {
+          link.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center",
+          });
+        }
+      });
+    });
+  </script>
+</HomeLayout>
