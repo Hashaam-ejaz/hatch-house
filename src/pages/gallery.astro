@@ -1,78 +1,75 @@
 ---
+import { Image } from "astro:assets";
 import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
 import HomeLayout from "../layouts/HomeLayout.astro";
+
+// Import all local images so Astro can process them
+import office1 from "../assets/gallery/office1.png";
+import office2 from "../assets/gallery/office2.jpg";
+import office3 from "../assets/gallery/office3.jpg";
+import office4 from "../assets/gallery/office4.jpg";
+import office5 from "../assets/gallery/office5.jpg";
+import office6 from "../assets/gallery/office6.jpg";
+import meeting1 from "../assets/gallery/meeting1.jpg";
+import meeting2 from "../assets/gallery/meeting2.jpg";
+import meeting3 from "../assets/gallery/meeting3.jpg";
+import recreation1 from "../assets/gallery/recreation1.jpg";
+import recreation2 from "../assets/gallery/recreation2.jpg";
+import recreation3 from "../assets/gallery/recreation3.jpg";
+import reception1 from "../assets/gallery/reception1.png";
+import reception2 from "../assets/gallery/reception2.jpg";
+import exterior1 from "../assets/gallery/exterior1.jpg";
 
 const galleryData = [
   {
     id: "office",
     title: "Office Area",
-    thumb: "/gallery/office1.png",
+    thumb: office1,
     images: [
-      { src: "/gallery/office1.png", alt: "Office Main Desk Area Layout" },
-      { src: "/gallery/office2.jpg", alt: "Office Workstation Seating View" },
-      { src: "/gallery/office3.jpg", alt: "Office Shared Desk Configurations" },
-      { src: "/gallery/office4.jpg", alt: "Office Setup with Wall Mural View" },
-      { src: "/gallery/office5.jpg", alt: "Wall Mural View" },
-      { src: "/gallery/office6.jpg", alt: "Alternative Angle Office Desks" },
+      { src: office1, alt: "Office Main Desk Area Layout" },
+      { src: office2, alt: "Office Workstation Seating View" },
+      { src: office3, alt: "Office Shared Desk Configurations" },
+      { src: office4, alt: "Office Setup with Wall Mural View" },
+      { src: office5, alt: "Wall Mural View" },
+      { src: office6, alt: "Alternative Angle Office Desks" },
     ],
   },
   {
     id: "meeting",
     title: "Meeting Room",
-    thumb: "/gallery/meeting1.jpg",
+    thumb: meeting1,
     images: [
-      { src: "/gallery/meeting1.jpg", alt: "Main Conference Room Table Setup" },
-      { src: "/gallery/meeting2.jpg", alt: "Meeting Room With Wall Mural" },
-      {
-        src: "/gallery/meeting3.jpg",
-        alt: "Close up Screen Layout Meeting Room",
-      },
+      { src: meeting1, alt: "Main Conference Room Table Setup" },
+      { src: meeting2, alt: "Meeting Room With Wall Mural" },
+      { src: meeting3, alt: "Close up Screen Layout Meeting Room" },
     ],
   },
   {
     id: "recreation",
     title: "Recreational Room",
-    thumb: "/gallery/recreation1.jpg",
+    thumb: recreation1,
     images: [
-      {
-        src: "/gallery/recreation1.jpg",
-        alt: "Comfy Leather Bean Bags & Loungers",
-      },
-      {
-        src: "/gallery/recreation2.jpg",
-        alt: "Recreational Breakout Zone Seating",
-      },
-      {
-        src: "/gallery/recreation3.jpg",
-        alt: "In-house Espresso Coffee Machine Station",
-      },
+      { src: recreation1, alt: "Comfy Leather Bean Bags & Loungers" },
+      { src: recreation2, alt: "Recreational Breakout Zone Seating" },
+      { src: recreation3, alt: "In-house Espresso Coffee Machine Station" },
     ],
   },
   {
     id: "reception",
     title: "Reception",
-    thumb: "/gallery/reception1.png",
+    thumb: reception1,
     images: [
-      {
-        src: "/gallery/reception1.png",
-        alt: "Front Welcome Reception Desk Area",
-      },
-      {
-        src: "/gallery/reception2.jpg",
-        alt: "Hatch Branded Entryway Counters",
-      },
+      { src: reception1, alt: "Front Welcome Reception Desk Area" },
+      { src: reception2, alt: "Hatch Branded Entryway Counters" },
     ],
   },
   {
     id: "exterior",
     title: "Exterior",
-    thumb: "/gallery/exterior1.jpg",
+    thumb: exterior1,
     images: [
-      {
-        src: "/gallery/exterior1.jpg",
-        alt: "Hatch Main Signage Building Facade",
-      },
+      { src: exterior1, alt: "Hatch Main Signage Building Facade" },
     ],
   },
 ];
@@ -122,16 +119,15 @@ const allFlattenedImages = galleryData.flatMap((section) => section.images);
                   : "bg-neutral-950/40 md:bg-transparent border-neutral-900 md:border-transparent text-neutral-400",
               ]}
             >
-              <img
+             <Image
                 src={section.thumb}
                 class:list={[
                   "w-10 h-10 rounded object-cover bg-neutral-900 border border-neutral-800 hidden sm:block transition-all duration-300",
-                  // First item starts colored (no grayscale), others start grayscale
                   index === 0
                     ? "grayscale-0"
                     : "grayscale group-hover:grayscale-0",
                 ]}
-                alt=""
+                alt={section.title}
               />
               <div class="text-left">
                 <span class="text-xs font-medium transition-colors duration-200 block tracking-wide group-hover:text-white">
@@ -178,11 +174,11 @@ const allFlattenedImages = galleryData.flatMap((section) => section.images);
                         : "sm:col-span-1 aspect-[4/3]",
                     ]}
                   >
-                    <img
+                    <Image
                       src={img.src}
                       alt={img.alt}
                       data-flat-index={flatIndex}
-                      class="gallery-clickable-img w-full h-full object-cover transition-all duration-500 ease-out grayscale-[15%] group-hover/img:grayscale-0 group-hover/img:scale-[1.015]"
+                      class="gallery-clickable-img w-full h-full object-cover transition-all duration-500 ease-out grayscale-15 group-hover/img:grayscale-0 group-hover/img:scale-[1.015]"
                       loading="lazy"
                     />
                     <div class="absolute inset-0 border border-white/0 group-hover/img:border-white/10 transition-all duration-300 pointer-events-none rounded-lg" />
