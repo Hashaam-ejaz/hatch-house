@@ -28,16 +28,16 @@ const { reducePadding = false} = Astro.props
   <div class="flex flex-col mb-[37px]">
     <div
   class:list={[
-    "flex items-center justify-center shrink-0 w-[132px] h-[60px] md:w-[500px] md:h-[183px] mb-[60px] mt-3.5 md:mx-auto cursor-pointer",
+    "flex items-center justify-center shrink-0 w-[132px] h-[60px] md:w-[500px] md:h-[130px] mb-[40px] mt-3.5 md:mx-auto cursor-pointer",
     reducePadding 
       ? "md:mb-[60px] md:mt-[60px]"
-      : "md:mb-[150px] md:mt-[136px]"
+      : "md:mb-[130px] md:mt-[136px]"
   ]}
   onclick="window.location.href = '/';">
-      <img src="/footer-logo.webp" alt="Hatch" />
+      <img src="/footer-logo.webp" alt="Hatch" class="h-full w-auto object-contain"/>
     </div>
     <div
-      class="flex flex-col md:flex-row md:flex-wrap md:justify-center gap-5 md:gap-x-[100px] text-[25px] md:w-[600px] md:mx-auto"
+      class="flex flex-col md:justify-center gap-5 md:gap-x-[100px] text-[25px] md:w-[600px] md:mx-auto"
     >
       {
         items.map((item, index) => {
@@ -46,11 +46,11 @@ const { reducePadding = false} = Astro.props
               href={item.link}
               target={index === 0 ? "_self" : "_blank"}
               class={`
-                flex gap-2.5 transition-opacity hover:opacity-80
+                flex gap-2.5 transition-opacity hover:opacity-80 w-full justify-start md:justify-center
                 ${
                   index === 2
-                    ? "w-full items-start md:justify-center md:mt-[50px]"
-                    : "items-center justify-start"
+                    ? "items-start"
+                    : "items-center"
                 }
               `}
             >
@@ -62,8 +62,8 @@ const { reducePadding = false} = Astro.props
 
               <div
                 class={`
-                ${index === 2 ? "break-words" : "whitespace-nowrap"} 
-                ${index === 2 ? "text-left" : ""}
+                ${index === 2 ? "wrap-break-words md:text-center" : "whitespace-nowrap"} 
+                // ${index === 2 ? "text-left" : ""}
               `}
               >
                 {item.text}
