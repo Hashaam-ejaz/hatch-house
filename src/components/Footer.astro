@@ -1,55 +1,71 @@
 ---
 
+interface Props {
+  reducePadding?: boolean;
+}
 const items = [
   {
     icon: "/email-footer.svg",
     text: "info@hatchhouse.net",
     link: "mailto:info@hatchhouse.net",
-
   },
   {
     icon: "/call-footer.svg",
     text: "+92 329 4282424",
-    link: "https://wa.me/923294282424?text=I%20would%20like%20to%20know%20more%20about%20Hatch"
+    link: "https://wa.me/923294282424?text=I%20would%20like%20to%20know%20more%20about%20Hatch",
   },
   {
     icon: "/location-footer.svg",
     text: "2nd Floor, Building 121, Sector Y, Commercial Area, Phase 3, DHA, Lahore",
-    link: "https://maps.app.goo.gl/pjZD9m1F27L5CafW6?g_st=ic"
+    link: "https://maps.app.goo.gl/pjZD9m1F27L5CafW6?g_st=ic",
   },
-]
+];
+
+const { reducePadding = false} = Astro.props
 ---
 
 <footer>
   <div class="flex flex-col mb-[37px]">
-    <div class="flex items-center justify-center shrink-0 w-[132px] h-[60px] md:w-[500px] md:h-[183px] mb-[60px] md:mb-[150px] mt-3.5 md:mt-[136px] md:mx-auto">
+    <div
+  class:list={[
+    "flex items-center justify-center shrink-0 w-[132px] h-[60px] md:w-[500px] md:h-[183px] mb-[60px] mt-3.5 md:mx-auto cursor-pointer",
+    reducePadding 
+      ? "md:mb-[60px] md:mt-[60px]"
+      : "md:mb-[150px] md:mt-[136px]"
+  ]}
+  onclick="window.location.href = '/';">
       <img src="/footer-logo.webp" alt="Hatch" />
     </div>
-    <div class="flex flex-col md:flex-row md:flex-wrap md:justify-center gap-5 md:gap-x-[100px] text-[25px] md:w-[600px] md:mx-auto">
+    <div
+      class="flex flex-col md:flex-row md:flex-wrap md:justify-center gap-5 md:gap-x-[100px] text-[25px] md:w-[600px] md:mx-auto"
+    >
       {
         items.map((item, index) => {
           return (
-            <a 
+            <a
               href={item.link}
               target={index === 0 ? "_self" : "_blank"}
               class={`
                 flex gap-2.5 transition-opacity hover:opacity-80
-                ${index === 2 
-                  ? "w-full items-start md:justify-center md:mt-[50px]" 
-                  : "items-center justify-start"
+                ${
+                  index === 2
+                    ? "w-full items-start md:justify-center md:mt-[50px]"
+                    : "items-center justify-start"
                 }
               `}
             >
-              <img 
-                src={item.icon} 
-                alt={item.text} 
-                class={`shrink-0 ${index === 2 ? "mt-1.5" : ""}`} 
+              <img
+                src={item.icon}
+                alt={item.text}
+                class={`shrink-0 ${index === 2 ? "mt-1.5" : ""}`}
               />
-              
-              <div class={`
+
+              <div
+                class={`
                 ${index === 2 ? "break-words" : "whitespace-nowrap"} 
                 ${index === 2 ? "text-left" : ""}
-              `}>
+              `}
+              >
                 {item.text}
               </div>
             </a>

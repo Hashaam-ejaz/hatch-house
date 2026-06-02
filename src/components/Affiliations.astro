@@ -1,0 +1,69 @@
+---
+import { Image } from 'astro:assets';
+const affiliations = [
+  {
+    image: "/toni.png",
+    name: "Toni & Guy",
+    dicount: 20
+  },
+  {
+    image: "/guinot.png",
+    name: "Guinot",
+    dicount: 20
+  },
+  {
+    image: "/coterie.png",
+    name: "Coterie",
+    dicount: 10
+  },
+  {
+    image: "/rollover.png",
+    name: "Rollover",
+    dicount: 20
+  },
+  {
+    image: "/trx.png",
+    name: "TRX Auto Garage",
+    dicount: 10
+  },
+  {
+    image: "/graco.png",
+    name: "Graco",
+    dicount: 15
+  },
+  {
+    image: "/baker.png",
+    name: "The Broke Baker",
+    dicount: 20
+  },
+]
+---
+
+<section class=" text-white py-16 px-6 md:py-24" id="affiliations">
+  <div class="max-w-[1200px] mx-auto flex flex-col items-center">
+    
+    <!-- Text Header Section -->
+    <div class="text-center mb-4 md:mb-6">
+      <h2 class="text-[32px] font-bold text-center mb-2.5 md:text-5xl">Hatch Member Affiliations & Benefits</h2>
+      <p class="text-center md:text-xl mb-[30px] md:mb-[80px]">
+        Every Hatch member receives a Member Access Card with exclusive partner discounts across selected lifestyle, dining, automotive, grooming, and retail brands.
+      </p>
+    </div>
+
+    <div class="w-full flex flex-col md:flex-row md:flex-nowrap justify-center md:justify-between items-center md:items-end gap-10 md:gap-6 pb-4">
+      {affiliations.map((affiliation)=> (
+        <div class="flex flex-col items-center justify-end gap-4 md:gap-6 flex-1 w-full md:w-auto md:min-w-[120px]">
+          {/* Fixed height bounding box for logos to align perfectly */}
+          <div class="h-[140px] md:h-[80px] w-full flex items-center justify-center px-4 md:px-0">
+            <Image src={affiliation.image} class="max-w-full max-h-full object-contain" quality="max" width={250} height={250} alt={affiliation.name}/>
+          </div>
+          <div class="text-2xl md:text-xl font-bold whitespace-nowrap">
+            <span class="text-primary">{affiliation.dicount}% </span>
+            <span class="text-white uppercase">OFF</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

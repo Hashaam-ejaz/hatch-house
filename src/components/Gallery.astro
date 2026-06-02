@@ -1,5 +1,6 @@
 ---
-import { Image } from 'astro:assets';
+import Button from "./Button.astro";
+
 const images = [
   { src: '/site1.webp', alt: 'Main workspace view' },
   { src: '/site2.png', alt: 'Meeting area' },
@@ -27,94 +28,25 @@ const images = [
           src={img.src} 
           alt={img.alt} 
           data-index={index}
-          class="gallery-img w-full h-full object-cover aspect-[16/10] md:aspect-auto"
+          class="gallery-img w-full h-full object-cover aspect-16/10 md:aspect-auto"
         />
+        {index === 3 && (
+          <a 
+            href="/gallery" 
+            class="absolute bottom-4 right-4 z-10 flex items-center gap-2 bg-white text-gray-900 px-4 py-2.5 rounded-md shadow-md hover:shadow-lg hover:scale-105 transition-colors text-sm font-medium"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            View All Photos
+          </a>
+        )}
       </div>
     ))}
   </div>
 
-  <div 
-    id="lightbox" 
-    class="fixed inset-0 bg-black/90 z-50 hidden flex-col items-center justify-center p-4 md:p-10"
-  >
-    <!-- Close Button -->
-    <button id="close-lightbox" class="absolute top-8 right-8 text-white text-4xl hover:text-gray-300">&times;</button>
-    
-    <!-- Prev Button -->
-    <button id="prev-btn" class="absolute left-4 md:left-10 text-white text-5xl hover:scale-110">‹</button>
-    
-    <!-- Main Modal Image -->
-    <img id="modal-img" src="" alt="" class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl" />
-    
-    <!-- Next Button -->
-    <button id="next-btn" class="absolute right-4 md:right-10 text-white text-5xl hover:scale-110">›</button>
-  </div>
 </section>
 
-<script>
-  const gallery = document.getElementById('gallery');
-  const lightbox = document.getElementById('lightbox');
-  const modalImg = document.getElementById('modal-img') as HTMLImageElement;
-  const closeBtn = document.getElementById('close-lightbox');
-  const prevBtn = document.getElementById('prev-btn');
-  const nextBtn = document.getElementById('next-btn');
-  
-  const images = Array.from(document.querySelectorAll('.gallery-img')) as HTMLImageElement[];
-  let currentIndex = 0;
-
-  function updateModalImage(index: number) {
-    currentIndex = index;
-    modalImg.src = images[currentIndex].src;
-    modalImg.alt = images[currentIndex].alt;
-  }
-
-  function openLightbox(index: number) {
-    if (window.innerWidth < 768) return;
-    
-    updateModalImage(index);
-    lightbox?.classList.remove('hidden');
-    lightbox?.classList.add('flex');
-    document.body.style.overflow = 'hidden'; // Prevent scrolling
-  }
-
-  function closeLightbox() {
-    lightbox?.classList.add('hidden');
-    lightbox?.classList.remove('flex');
-    document.body.style.overflow = 'auto';
-  }
-
-  function showNext() {
-    currentIndex = (currentIndex + 1) % images.length;
-    updateModalImage(currentIndex);
-  }
-
-  function showPrev() {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    updateModalImage(currentIndex);
-  }
-
-  gallery?.addEventListener('click', (e) => {
-    const target = e.target as HTMLImageElement;
-    if (target.classList.contains('gallery-img')) {
-      const index = parseInt(target.dataset.index || '0');
-      openLightbox(index);
-    }
-  });
-
-  closeBtn?.addEventListener('click', closeLightbox);
-  nextBtn?.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
-  prevBtn?.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
-
-  // Close on clicking background
-  lightbox?.addEventListener('click', (e) => {
-    if (e.target === lightbox) closeLightbox();
-  });
-
-  // Keyboard navigation
-  document.addEventListener('keydown', (e) => {
-    if (lightbox?.classList.contains('hidden')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowRight') showNext();
-    if (e.key === 'ArrowLeft') showPrev();
-  });
-</script>

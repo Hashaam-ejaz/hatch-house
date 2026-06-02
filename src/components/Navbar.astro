@@ -3,7 +3,7 @@ import Button from "./Button.astro"
 ---
 
 <header class="flex justify-between items-center px-4 py-4">
-  <div class="flex gap-2.5">
+  <div class="flex gap-2.5 cursor-pointer" onclick="window.location.href = '/';">
     <img src="/favicon.svg"/> 
     <img src="/hatchText.svg"/>
   </div>
@@ -12,8 +12,10 @@ import Button from "./Button.astro"
   </div>
 
   <div class="hidden md:flex items-center gap-[70px]">
+    <Button text="Property Management" variant="ghost" href="https://hatchhousellp.net" target="_blank"  />
     <Button text="Amenities" variant="ghost" href="#amenities" target="_self" />
     <Button text="Pricing" variant="ghost" href="#pricing" target="_self" />
+    <Button text="Gallery" variant="ghost" href="/gallery" target="_self" />
     <Button text="Contact Now" variant="primary" href="#contact" target="_self" />
   </div>
 </header>
