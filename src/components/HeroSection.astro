@@ -4,14 +4,21 @@ import HeroGrid from "./HeroGrid.astro";
 ---
 
 <div
-  class="flex flex-1 flex-col lg:flex-row gap-[50px] py-5 lg:pb-0 lg:pt-[50px] items-center overflow-hidden"
+  class="flex flex-1 flex-col lg:flex-row gap-12.5 py-5 lg:pb-0 lg:pt-12.5 items-center overflow-hidden"
 >
   <div class="flex-1 min-w-0">
-    <!-- <div class="w-fit mb-6">
-      <Button text="EST. 2025" variant="semiTransparent" />
-    </div> -->
+    <div class="w-fit mb-10">
+      <div class="text-primary font-semibold text-[24px] md:text-[32px]">Y Block, DHA Phase 3, Lahore</div>
+      <div class="flex items-start justify-center gap-3">
+        <img src="/clock-hero.svg" width="24" height="24"/>
+        <div class="flex flex-col">
+          <div class="text-[16px] md:text-[20px]">Open 5 days a week. 1:00 PM to 3:00 AM. Come and go as you like.</div>
+          <div class="text-[16px] md:text-[20px]">5 Minutes from most of DHA, Phase 1-5.</div>
+        </div>
+      </div>
+    </div>
     
-    <div class="text-[64px] leading-[84px] font-bold mb-10 md:text-8xl">
+    <div class="text-[64px] leading-21 font-bold mb-10 md:text-8xl">
       <span>Work.</span><br />
       <span>Create.</span><br />
       <span class="text-primary">Belong.</span><br />
@@ -29,13 +36,13 @@ import HeroGrid from "./HeroGrid.astro";
       </span>
     </p>
 
-    <div class="flex gap-2.5 mt-5 lg:mt-[50px]">
+    <div class="flex gap-2.5 mt-5 lg:mt-12.5">
       <Button text="Contact Now" variant="primary" href="https://wa.me/923294282424?text=I%20would%20like%20to%20know%20more%20about%20Hatch" target="_blank" />
       <Button text="Visit Us" variant="secondary" href="https://maps.app.goo.gl/pjZD9m1F27L5CafW6?g_st=ic" target="_blank" />
     </div>
   </div>
 
-  <div class="flex-1 w-full max-w-[500px] min-w-0">
+  <div class="flex-1 w-full max-w-125 min-w-0">
     <HeroGrid />
   </div>
 </div>
