@@ -8,7 +8,7 @@ import Button from "./Button.astro";
     <span class="hidden lg:flex font-bold text-5xl">&nbsp;Enquire now!</span>
   </div>
   
-  <form id="hatch-form" class="text-secondary bg-white flex flex-col rounded-3xl max-w-[600px] w-full mx-auto px-[30px] py-[54px] md:py-[100px] gap-6">
+  <form id="hatch-form" class="text-secondary bg-white flex flex-col rounded-3xl max-w-[600px] w-full mx-auto px-[30px] py-[24px] md:py-[40px] gap-6">
     
     <div class="flex flex-col">
       <label for="fullName" class="text-xl font-semibold">Full name*</label>
@@ -38,6 +38,16 @@ import Button from "./Button.astro";
         name="phone"
         class="outline-none border-b-2 border-primary py-2 focus:border-primary-dark transition-colors"
       />
+    </div>
+
+    <div class="flex flex-col mb-10">
+      <label for="enquiry" class="text-xl font-semibold">Enquiry:</label>
+      <textarea
+        id="enquiry"
+        name="enquiry"
+        rows="4"
+        class="outline-none border-2 border-primary rounded-2xl p-3 mt-2 focus:border-primary-dark transition-colors resize-y"
+      ></textarea>
     </div>
 
     <Button text="Submit" variant="primary" class="self-start text-xl! py-[17px]! px-[50px]!" type="submit"/>

@@ -1,0 +1,44 @@
+---
+const items = [
+    {
+        heading: "Book A 15 Minute Tour",
+        description:
+            "Pick a slot. We'll show you the Desks, Conference Room, Coffee Bar, Recreation Room, Rooftop Seating, and the quiet corners.",
+    },
+    {
+        heading: "Work A Full Day, Dree",
+        description:
+            "Plug in and test it properly - WiFi Speed, Air Conditioning, Focus, Calls, Coffee. \n Treat it like it's already yours.",
+    },
+    {
+        heading: "Join Only If It Fits",
+        description:
+            "Loved it? Pick a plan. \n Didn't? Walk away, no questions. \n The Day was on us either way.",
+    },
+];
+---
+
+<section class="py-16 px-6 md:py-24">
+        <div class="text-center mx-auto mb-7.5 md:mb-20">
+        <h2 class="text-[32px] md:text-[48px] font-bold">
+            'How <span class="text-primary">"Try Before you Pay"</span> Works'
+        </h2>
+    </div>
+    <div class="flex flex-col md:flex-row gap-10">
+        {
+            items.map((item, index) => (
+                <div class="bg-white/10 border-2 border-white/10 border-inset rounded-2xl py-10 px-9.5 w-full md:flex-1">
+                    <div class="text-primary font-medium text-[73px]">
+                        {index + 1}
+                    </div>
+                    <div class="text-primary font-bold text-[27px]">
+                        {item.heading}
+                    </div>
+                    <div class="text-[20px] whitespace-pre-line">
+                        {item.description}
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</section>

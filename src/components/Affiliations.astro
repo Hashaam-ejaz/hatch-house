@@ -1,65 +1,50 @@
 ---
 import { Image } from 'astro:assets';
 const affiliations = [
-  {
-    image: "/toni.png",
-    name: "Toni & Guy",
-    dicount: 20
-  },
-  {
-    image: "/guinot.png",
-    name: "Guinot",
-    dicount: 20
-  },
-  {
-    image: "/coterie.png",
-    name: "Coterie",
-    dicount: 10
-  },
-  {
-    image: "/rollover.png",
-    name: "Rollover",
-    dicount: 20
-  },
-  {
-    image: "/trx.png",
-    name: "TRX Auto Garage",
-    dicount: 10
-  },
-  {
-    image: "/graco.png",
-    name: "Graco",
-    dicount: 15
-  },
-  {
-    image: "/baker.png",
-    name: "The Broke Baker",
-    dicount: 20
-  },
+  { image: "/toni.png", name: "Toni & Guy", dicount: 20 },
+  { image: "/guinot.png", name: "Guinot", dicount: 20 },
+  { image: "/coterie.png", name: "Coterie", dicount: 10 },
+  { image: "/rollover.png", name: "Rollover", dicount: 20 },
+  { image: "/trx.png", name: "TRX Auto Garage", dicount: 10 },
+  { image: "/graco.png", name: "Graco", dicount: 15 },
+  { image: "/baker.png", name: "The Broke Baker", dicount: 20 },
 ]
 ---
 
-<section class=" text-white py-16 px-6 md:py-24" id="affiliations">
-  <div class="max-w-[1200px] mx-auto flex flex-col items-center">
-    
+<section class="text-white pb-16 px-6 md:pb-24" id="affiliations">
+  <div class="mx-auto flex max-w-7xl flex-col items-center">
+
     <!-- Text Header Section -->
-    <div class="text-center mb-4 md:mb-6">
+    <!-- <div class="text-center mb-4 md:mb-6">
       <h2 class="text-[32px] font-bold text-center mb-2.5 md:text-5xl">Hatch Member Affiliations & Benefits</h2>
-      <p class="text-center md:text-xl mb-[30px] md:mb-[80px]">
+      <p class="text-center md:text-xl mb-[30px] md:mb-[80px] max-w-3xl mx-auto">
         Every Hatch member receives a Member Access Card with exclusive partner discounts across selected lifestyle, dining, automotive, grooming, and retail brands.
       </p>
-    </div>
+    </div> -->
 
-    <div class="w-full flex flex-col md:flex-row md:flex-nowrap justify-center md:justify-between items-center md:items-end gap-10 md:gap-6 pb-4">
-      {affiliations.map((affiliation)=> (
-        <div class="flex flex-col items-center justify-end gap-4 md:gap-6 flex-1 w-full md:w-auto md:min-w-[120px]">
-          {/* Fixed height bounding box for logos to align perfectly */}
-          <div class="h-[140px] md:h-[80px] w-full flex items-center justify-center px-4 md:px-0">
-            <Image src={affiliation.image} class="max-w-full max-h-full object-contain" quality="max" width={250} height={250} alt={affiliation.name}/>
+   <!-- 3 cols mobile (3+3+1) → 10-col track at md = 5 per row (5+2) → 7 at lg -->
+    <div class="grid w-full grid-cols-3 gap-4 place-items-center pb-4 md:grid-cols-10 md:gap-6 lg:grid-cols-7">
+      {affiliations.map((affiliation, i) => (
+        <div
+          class:list={[
+            "flex w-full flex-col items-center justify-end gap-4",
+            // Card styling on mobile only; plain on md+
+            "rounded-xl border border-primary p-4 md:rounded-none md:border-0 md:p-0",
+            // Each card spans 2 of the 10 md columns (=5 per row); reset to 1 at lg
+            "md:col-span-2 lg:col-span-1",
+            // Mobile (3 cols): center the lone 7th card, reset at md
+            i === 6 && "col-start-2 md:col-start-auto",
+            // md (5 per row, 5+2): start orphan row (item 6) at col 4 → cards span 4–7, centered
+            i === 5 && "md:col-start-4 lg:col-start-auto",
+          ]}
+        >
+          {/* Fixed-height box keeps logos + the % row aligned */}
+          <div class="flex h-20 w-full items-center justify-center px-2">
+            <Image src={affiliation.image} class="max-h-full max-w-full object-contain" quality="max" width={250} height={250} alt={affiliation.name} />
           </div>
-          <div class="text-2xl md:text-xl font-bold whitespace-nowrap">
+          <div class="text-base font-bold whitespace-nowrap md:text-xl">
             <span class="text-primary">{affiliation.dicount}% </span>
-            <span class="text-white uppercase">OFF</span>
+            <span class="uppercase text-white">OFF</span>
           </div>
         </div>
       ))}

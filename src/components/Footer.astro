@@ -28,16 +28,16 @@ const { reducePadding = false} = Astro.props
   <div class="flex flex-col mb-[37px]">
     <div
   class:list={[
-    "flex items-center justify-center shrink-0 w-[132px] h-[60px] md:w-[500px] md:h-[130px] mb-[40px] mt-3.5 md:mx-auto cursor-pointer",
+    "flex items-center justify-center shrink-0 w-33 h-15 md:w-125 md:h-32.5 mb-10 mt-3.5 md:mx-auto cursor-pointer",
     reducePadding 
-      ? "md:mb-[60px] md:mt-[60px]"
-      : "md:mb-[130px] md:mt-[136px]"
+      ? "md:mb-15 md:mt-15"
+      : "md:mb-32.5 md:mt-34"
   ]}
   onclick="window.location.href = '/';">
       <img src="/footer-logo.webp" alt="Hatch" class="h-full w-auto object-contain"/>
     </div>
     <div
-      class="flex flex-col md:justify-center gap-5 md:gap-x-[100px] text-[25px] md:w-[600px] md:mx-auto"
+      class="flex flex-col md:justify-center gap-5 md:gap-x-25 text-[25px] md:w-150 md:mx-auto"
     >
       {
         items.map((item, index) => {

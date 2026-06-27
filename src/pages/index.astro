@@ -12,16 +12,24 @@ import Gallery from '../components/Gallery.astro';
 import Brew from '../components/Brew.astro';
 import '../styles/global.css';
 import Affiliations from '../components/Affiliations.astro';
+import TryIt from '../components/TryIt.astro';
+import HowTry from '../components/HowTry.astro';
+import Pricing from '../components/Pricing.astro';
+import AccessCard from '../components/AccessCard.astro';
 ---
 
 <HomeLayout title="Hatch">
 	<Navbar/>
 	<HeroSection/>
+	<TryIt />
+	<HowTry />
+	<Pricing />
+	<AccessCard />
+	<Affiliations />
 	<WhyHatch/>
 	<Amenities/>
 	<Gallery/>
-	<PriceCard/>
-	<Affiliations />
+	<!-- <PriceCard/> -->
 	<Brew/>
 	<Contact/>
 	<Footer/>

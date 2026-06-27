@@ -28,18 +28,26 @@ const reasons = [
 ];
 ---
 
-<div class="flex flex-col py-[50px] md:py-[100px]">
-  <div class="text-start text-[32px] font-bold mb-2.5 md:text-center md:text-[48px]">
+<div class="flex flex-col py-12.5 md:py-25">
+  <div class=" text-[32px] font-bold mb-2.5 text-center md:text-[48px]">
     Why Choose Hatch
   </div>
-  <div class="text-base font-normal mb-[30px] md:text-center md:text-[20px]">
+  <div class="text-base font-normal mb-7.5 md:mb-20 text-center md:text-[20px]">
     We are more than just a workspace. We are a community dedicated to helping
     you thrive.
   </div>
-  <div class="flex flex-col md:flex-row gap-5">
+<div class="grid grid-cols-1 gap-5 md:grid-cols-6 lg:grid-cols-5">
     {
-      reasons.map((reason) => (
-        <div class="flex flex-col gap-2.5">
+      reasons.map((reason, i) => (
+        <div
+          class:list={[
+            "flex flex-col gap-2.5",
+            // md: each card spans 2 of 6 cols (= 3 per row); reset to 1 col at lg
+            "md:col-span-2 lg:col-span-1",
+            // md (3+2): start orphan row (item 4) at col 2 → cards span 2–5, centered
+            i === 3 && "md:col-start-2 lg:col-start-auto",
+          ]}
+        >
           <div class="w-10 h-10 flex items-center justify-start">
             <img
               src={reason.logo}

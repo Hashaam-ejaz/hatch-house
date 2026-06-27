@@ -11,6 +11,7 @@ export const server = {
       fullName: z.string(),
       email: z.email(),
       phone: z.string(),
+      enquiry: z.string().optional()
     }),
     handler: async (input) => {
       const { data, error } = await resend.emails.send({
@@ -19,7 +20,8 @@ export const server = {
         subject: `New Enquiry: ${input.fullName}`,
         html: `<p><strong>Name:</strong> ${input.fullName}</p>
                <p><strong>Email:</strong> ${input.email}</p>
-               <p><strong>Phone:</strong> ${input.phone}</p>`,
+               <p><strong>Phone:</strong> ${input.phone}</p>
+               <p><strong>Enquiry:</strong> ${input.enquiry || '—'}</p>`,
       });
 
       if (error) throw new Error('Email failed');

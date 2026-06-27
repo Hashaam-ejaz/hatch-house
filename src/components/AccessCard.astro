@@ -1,0 +1,46 @@
+---
+import Button from "./Button.astro";
+---
+
+<section class="py-16 md:py-24">
+  <div class="mx-auto grid w-full grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16 px-6">
+    <!-- Text column -->
+    <div>
+      <h2 class="text-[32px] font-bold leading-[1.1] md:text-[48px]">
+        <span class="block text-white">Hatch Member Access Card</span>
+        <span class="block text-primary">Affiliations &amp; Benefits</span>
+      </h2>
+
+      <p class="mt-4 max-w-xl text-[16px] font-normal leading-relaxed text-white/80 md:mt-5 md:text-[20px]">
+        Every Hatch member receives a Member Access Card with exclusive partner
+        discounts across selected lifestyle, dining, automotive, grooming, and
+        retail brands.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-4 md:mt-12">
+        <Button
+          text="Contact Now"
+          variant="primary"
+          href="https://wa.me/923294282424?text=I%20would%20like%20to%20know%20more%20about%20Hatch"
+          target="_blank"
+        />
+        <Button
+          text="Visit Us"
+          variant="secondary"
+          href="https://maps.app.goo.gl/pjZD9m1F27L5CafW6?g_st=ic"
+          target="_blank"
+        />
+      </div>
+    </div>
+
+    <!-- Image column -->
+    <div class="md:order-last">
+      <img
+        src="/access-card.png"
+        alt="Hatch Member Access Card"
+        loading="lazy"
+        class="w-full rounded-3xl object-cover"
+      />
+    </div>
+  </div>
+</section>
