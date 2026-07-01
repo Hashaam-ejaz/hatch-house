@@ -40,6 +40,32 @@ import Button from "./Button.astro";
       />
     </div>
 
+    <div class="flex flex-col">
+      <label for="interest" class="text-xl font-semibold">What are you interested in?*</label>
+      <select
+        id="interest"
+        name="interest"
+        class="outline-none border-b-2 border-primary py-2 focus:border-primary-dark transition-colors bg-white"
+      >
+        <option value="Free Trial">Free Trial</option>
+        <option value="Dedicated Desk">Dedicated Desk</option>
+        <option value="Private Office">Private Office</option>
+      </select>
+    </div>
+
+    <div class="flex-col hidden" id="billing-wrapper">
+      <label for="billing" class="text-xl font-semibold">Preferred Billing</label>
+      <select
+        id="billing"
+        name="billing"
+        class="outline-none border-b-2 border-primary py-2 focus:border-primary-dark transition-colors bg-white"
+      >
+        <option value="Monthly">Monthly</option>
+        <option value="Quarterly">Quarterly</option>
+        <option value="Yearly">Yearly</option>
+      </select>
+    </div>
+
     <div class="flex flex-col mb-10">
       <label for="enquiry" class="text-xl font-semibold">Enquiry:</label>
       <textarea
@@ -60,11 +86,23 @@ import Button from "./Button.astro";
 
   const form = document.getElementById('hatch-form') as HTMLFormElement;
   const status = document.getElementById('status');
+  const interest = document.getElementById('interest') as HTMLSelectElement;
+  const billingWrapper = document.getElementById('billing-wrapper');
+
+  function toggleBilling() {
+    const show = interest.value !== 'Free Trial';
+    billingWrapper?.classList.toggle('hidden', !show);
+    billingWrapper?.classList.toggle('flex', show);
+    (document.getElementById('billing') as HTMLSelectElement).disabled = !show;
+  }
+
+  interest?.addEventListener('change', toggleBilling);
+  toggleBilling(); // set correct state on load
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const formData = new FormData(form);
-    
+
     if (status) {
       status.textContent = "Submitting...";
       status.classList.remove('hidden', 'text-red-500', 'text-green-500');
@@ -79,6 +117,7 @@ import Button from "./Button.astro";
       status!.textContent = "Submitted successfully!";
       status!.classList.add('text-green-500');
       form.reset();
+      toggleBilling(); // re-sync after reset
     }
   });
 </script>

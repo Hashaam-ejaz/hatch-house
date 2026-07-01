@@ -11,17 +11,25 @@ export const server = {
       fullName: z.string(),
       email: z.email(),
       phone: z.string(),
+      interest: z.string().optional(),
+      billing: z.string().optional(),
       enquiry: z.string().optional()
     }),
+
     handler: async (input) => {
       const { data, error } = await resend.emails.send({
         from: 'Hatch House <info@hatchhouse.net>',
         to: 'info@hatchhouse.net',
-        subject: `New Enquiry: ${input.fullName}`,
+        subject: `New Enquiry (${input.interest || 'General'}): ${input.fullName}`,
         html: `<p><strong>Name:</strong> ${input.fullName}</p>
-               <p><strong>Email:</strong> ${input.email}</p>
-               <p><strong>Phone:</strong> ${input.phone}</p>
-               <p><strong>Enquiry:</strong> ${input.enquiry || '—'}</p>`,
+             <p><strong>Email:</strong> ${input.email}</p>
+             <p><strong>Phone:</strong> ${input.phone}</p>
+             <p><strong>Interested in:</strong> ${input.interest || '—'}</p>
+             ${input.interest !== 'Free Trial' && input.billing
+               ? `<p><strong>Preferred Billing:</strong> ${input.billing}</p>`
+               : ''}
+             <p><strong>Enquiry:</strong> ${input.enquiry || '—'}</p>`,
+
       });
 
       if (error) throw new Error('Email failed');
